@@ -1,0 +1,4 @@
+name: MsgReply
+author: zand
+main: com.bukkit.zand.reply.Reply
+version: 1.0
