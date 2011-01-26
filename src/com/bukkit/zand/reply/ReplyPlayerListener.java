@@ -46,7 +46,8 @@ public class ReplyPlayerListener extends PlayerListener {
 	    		if (args.length > 1) {
 	    			String pre = replyTo(player, false);
 	    			if (!pre.isEmpty())
-	    				event.setMessage(pre + command.substring(7));
+	    				event.setMessage(pre + command.substring(args[0].length())
+	    						.trim());
 	    		}
 	    		else {
 	    			player.sendMessage(ChatColor.RED + "Correct usage is: /reply (msg)");
@@ -69,7 +70,8 @@ public class ReplyPlayerListener extends PlayerListener {
 	    			String pre = replyTo(player, true);
 	    			if (!pre.isEmpty())
 	    				event.setMessage(pre + command.substring(
-	    						(args[0].equalsIgnoreCase("/wr") ? 3 : 2)));
+	    						(args[0].equalsIgnoreCase("/wr") ? 3 : 2))
+	    						.trim());
 	    		}
 	    		else {
 	    			player.sendMessage(ChatColor.RED + "Correct usage is: /wr (msg)");
