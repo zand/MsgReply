@@ -27,17 +27,21 @@ public class ReplyPlayerListener extends PlayerListener {
     	
     	if (args[0].equalsIgnoreCase("/msg") ||
     		args[0].equalsIgnoreCase("/tell") ||
-    		args[0].equalsIgnoreCase("/m")) {
+    		args[0].equalsIgnoreCase("/w")) {
     		if (args.length > 2) {
-    			List<Player> players = plugin.getServer().matchPlayer(args[1]);
-    			if (players.size() == 1) {
-    				update(player, players.get(0));
+    				List<Player> players = plugin.getServer().matchPlayer(args[1]);
+    				if (players.size() == 1) {
+    					update(player, players.get(0));
     			}
     		}
     		
+    		// Wrap to /msg
+			event.setMessage("/msg" + event.getMessage()
+					.substring(args[0].length()));
     	}
     	
-    	else if (args[0].equalsIgnoreCase("/reply")) { // Received 
+    	else if (args[0].equalsIgnoreCase("/r") ||
+    			 args[0].equalsIgnoreCase("/reply")) { // Received 
     		if (plugin.checkPermission(player, "reply.received")) {
 	    		if (args.length > 1) {
 	    			String pre = replyTo(player, false);
