@@ -30,6 +30,7 @@ public class Reply extends JavaPlugin {
     protected final HashMap<Player, Player> lastReceived = new HashMap<Player, Player>();
     
     public Permissions Permissions = null;
+    public boolean worldEditFound = false;
 
     public Reply(PluginLoader pluginLoader, Server instance, PluginDescriptionFile desc, File folder, File plugin, ClassLoader cLoader) {
         super(pluginLoader, instance, desc, folder, plugin, cLoader);
@@ -76,6 +77,12 @@ public class Reply extends JavaPlugin {
     			this.Permissions = (Permissions)test;
     	    	log.info("[" + name + "] Found Permissions plugin. Using it.");
     	    }
+    	}
+    	
+    	test = this.getServer().getPluginManager().getPlugin("WorldEdit");
+    	if(test != null) {
+    			this.worldEditFound = true;
+    	    	log.info("[" + name + "] Found WorldEdit plugin. Ignoreing \"//\".");
     	}
     }
 	

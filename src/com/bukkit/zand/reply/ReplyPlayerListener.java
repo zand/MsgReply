@@ -60,15 +60,19 @@ public class ReplyPlayerListener extends PlayerListener {
     	}
     	
     	else if (command.length() >= 2)
-    	if (command.startsWith("//")) { // Sent
+    	if ((!plugin.worldEditFound &&
+    		command.startsWith("//")) ||
+    		args[0].equalsIgnoreCase("/wr")) { // Sent
     		if (plugin.checkPermission(player, "reply.sent")) {
-	    		if (command.length() > 2) {
+	    		if (command.length() > 2 ||
+	    			args[0].equalsIgnoreCase("/wr")) {
 	    			String pre = replyTo(player, true);
 	    			if (!pre.isEmpty())
-	    				event.setMessage(pre + command.substring(2));
+	    				event.setMessage(pre + command.substring(
+	    						(args[0].equalsIgnoreCase("/wr") ? 3 : 2)));
 	    		}
 	    		else {
-	    			player.sendMessage(ChatColor.RED + "Correct usage is: //(msg)");
+	    			player.sendMessage(ChatColor.RED + "Correct usage is: /wr (msg)");
 	    			event.setCancelled(true);
 	    		}
     		}
