@@ -105,7 +105,7 @@ public class ReplyPlayerListener extends PlayerListener {
     		player.sendMessage(ChatColor.RED + to.getName() + " is Offline");
     		
     	} else player.sendMessage(ChatColor.RED + "You have not "
-    			+ (sent ? "sent" : "receved")
+    			+ (sent ? "sent" : "received")
     			+" a message yet.");
     	
     	return "";
